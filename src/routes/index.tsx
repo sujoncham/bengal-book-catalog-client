@@ -5,6 +5,7 @@ import Blog from "../pages/Blog";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Page404 from "../pages/Page404";
+import Products from "../pages/Products";
 import Register from "../pages/Register";
 const routes = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const routes = createBrowserRouter([
       {
         path: "/blog",
         element: <Blog />,
+      },
+      {
+        path: "/products",
+        element: <Products />,
       },
     ],
   },
