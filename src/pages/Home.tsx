@@ -1,7 +1,11 @@
+import Banner from "../components/Banner";
+import BookCatalog from "../components/BookCatalog";
+
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <Banner />
+      <BookCatalog />
     </div>
   );
 };
