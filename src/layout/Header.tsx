@@ -1,7 +1,18 @@
+import { signOut } from "firebase/auth";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { setUser } from "../redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import auth from "../utils/firebase.init";
 const Header = () => {
-  const user = true;
+  const { user } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    console.log("logout");
+    signOut(auth).then(() => {
+      dispatch(setUser(null));
+    });
+  };
   const [open, setOpen] = useState(true);
   return (
     <div className="bg-green-800 py-5">
@@ -23,7 +34,7 @@ const Header = () => {
             <li>
               <Link to={"/products"}>All Books</Link>
             </li>
-            {user ? (
+            {!user.email ? (
               <li>
                 <Link to={"/login"}>Login</Link>
               </li>
@@ -48,9 +59,12 @@ const Header = () => {
                     <Link to={"/products"} className="mt-2 bg-gray-500 px-2">
                       Setting
                     </Link>
-                    <Link to={"/products"} className="mt-2 bg-gray-500 px-2">
+                    <button
+                      onClick={handleLogout}
+                      className="mt-2 bg-gray-500 px-2"
+                    >
                       Logout
-                    </Link>
+                    </button>
                   </div>
                 )}
               </li>

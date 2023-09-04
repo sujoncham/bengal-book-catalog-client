@@ -1,6 +1,30 @@
-import { Link } from "react-router-dom";
+import { FormEvent, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
+import { loginUser } from "../redux/features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user, isLoading } = useAppSelector((state) => state.user);
+
+  const dispatch = useAppDispatch();
+  const from = location.state?.from?.pathname || "/";
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("clicked", email, password);
+    dispatch(loginUser({ email: email, password: password }));
+  };
+
+  useEffect(() => {
+    if (user.email && !isLoading) {
+      navigate(from, { replace: true });
+    }
+  }, [user.email, isLoading, navigate, from]);
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -15,7 +39,7 @@ const Login = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="email"
@@ -28,6 +52,7 @@ const Login = () => {
                 name="email"
                 type="email"
                 autoComplete="email"
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
               />
@@ -55,7 +80,7 @@ const Login = () => {
               <input
                 name="password"
                 type="password"
-                autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
               />
