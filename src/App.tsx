@@ -1,3 +1,4 @@
+import Footer from "./layout/Footer";
 import Header from "./layout/Header";
 import MainLayout from "./layout/MainLayout";
 
@@ -6,6 +7,7 @@ function App() {
     <>
       <Header />
       <MainLayout />
+      <Footer />
     </>
   );
 }

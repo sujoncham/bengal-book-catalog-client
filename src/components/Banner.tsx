@@ -17,6 +17,9 @@ const Banner = () => {
             lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
             fugiat aliqua.
           </p>
+          <button className="border-2 border-green-800 mr-2 px-5 py-1 rounded-md bg-green-800 hover:bg-orange-500 text-white">
+            Join Us
+          </button>
         </div>
       </div>
     </div>
