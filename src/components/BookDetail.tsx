@@ -24,9 +24,15 @@ const BookDetail = () => {
             <p>Rating : 4</p>
             <p>Price $35.00</p>
             <p>Published : 20-02-2023 </p>
-            <button className="border-2 border-green-800 mr-2 px-2 py-1 rounded-md bg-green-800 text-white">
-              add to card
-            </button>
+            <div className="mt-5">
+              <button className="border-2 border-green-800 mr-2 px-2 py-1 rounded-md bg-green-800 text-white">
+                add to card
+              </button>
+
+              <button className="border-2 border-green-800 mr-2 px-2 py-1 rounded-md bg-green-800 text-white">
+                add to wishlist
+              </button>
+            </div>
           </div>
         </div>
         <div className="mt-10">

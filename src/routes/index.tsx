@@ -3,11 +3,14 @@ import App from "../App";
 import BookDetail from "../components/BookDetail";
 import About from "../pages/About";
 import Blog from "../pages/Blog";
+import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Page404 from "../pages/Page404";
 import Products from "../pages/Products";
 import Register from "../pages/Register";
+import PrivateRoute from "./PrivateRoute";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +35,18 @@ const routes = createBrowserRouter([
       {
         path: "/bookDetail",
         element: <BookDetail />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/checkout",
+        element: (
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        ),
       },
     ],
   },

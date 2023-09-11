@@ -1,5 +1,6 @@
 import { signOut } from "firebase/auth";
 import { useState } from "react";
+import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { setUser } from "../redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -15,7 +16,7 @@ const Header = () => {
   };
   const [open, setOpen] = useState(true);
   return (
-    <div className="bg-green-800 py-5">
+    <div className="bg-green-800 py-3">
       <div className="container mx-auto px-5 flex flex-col lg:flex-row md:flex-row sm:flex-col lg:justify-between md:justify-between sm:justify-center lg:items-center md:items-center sm:items-center items-center gap-3">
         <div>
           <Link to={"/"}>Bengal Book Catalog</Link>
@@ -34,6 +35,23 @@ const Header = () => {
             <li>
               <Link to={"/products"}>All Books</Link>
             </li>
+            <li>
+              <Link to={"/checkout"}>Checkout</Link>
+            </li>
+          </ul>
+        </div>
+        <div className="text-white">
+          <ul className="flex justify-start items-center gap-3">
+            <li>
+              <Link to={"/login"}>
+                <FaHeart size={20} />
+              </Link>
+            </li>
+            <li>
+              <Link to={"/cart"}>
+                <FaShoppingCart size={20} />
+              </Link>
+            </li>
             {!user.email ? (
               <li>
                 <Link to={"/login"}>Login</Link>
@@ -47,7 +65,7 @@ const Header = () => {
                   <img
                     src=""
                     alt=""
-                    className="w-12 h-12 rounded-full border-2 border-green-800 mr-2"
+                    className="w-10 h-10 rounded-full border-2 border-green-800 mr-2"
                   />
                   <p>Shakil Ahmed</p>
                 </div>
