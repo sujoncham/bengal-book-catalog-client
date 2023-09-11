@@ -6,6 +6,7 @@ import { setUser } from "../redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import auth from "../utils/firebase.init";
 const Header = () => {
+  const { products } = useAppSelector((state) => state.cart);
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const handleLogout = () => {
@@ -48,8 +49,9 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to={"/cart"}>
+              <Link to={"/cart"} className="flex">
                 <FaShoppingCart size={20} />
+                <sup>{products.length > 0 ? products.length : 0}</sup>
               </Link>
             </li>
             {!user.email ? (

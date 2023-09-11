@@ -19,7 +19,7 @@ const BookCard = ({ product }: IProps) => {
   };
 
   const handleSingleProduct = (id: number) => {
-    navigate(`/productsDetail/${id}`);
+    navigate(`/bookDetail/${id}`);
   };
   return (
     <div className="group border-2 border-green-800 px-3 py-3 rounded-md">

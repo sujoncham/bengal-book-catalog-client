@@ -33,7 +33,7 @@ const routes = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: "/bookDetail",
+        path: "/bookDetail/:id",
         element: <BookDetail />,
       },
       {
