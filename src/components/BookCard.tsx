@@ -1,7 +1,8 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { addCart } from "../redux/features/cart/cartSlice";
-import { useAppDispatch } from "../redux/hooks";
+import { addWishlist } from "../redux/features/wishlist/wishSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { IProduct } from "../types/globalTypes";
 
 interface IProps {
@@ -9,13 +10,22 @@ interface IProps {
 }
 
 const BookCard = ({ product }: IProps) => {
-  const clickedHeart = true;
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const url = `http://localhost:5000/`;
+
+  const isProductInWishlist = useAppSelector((state) => {
+    const productToCheck = state.wishlist.books.find(
+      (product) => product._id === product._id
+    );
+    return !!productToCheck;
+  });
   const handleAddProduct = (product: IProduct) => {
     dispatch(addCart(product));
     console.log("added", product);
+  };
+  const handleAddWishlist = (product: IProduct) => {
+    dispatch(addWishlist(product));
   };
 
   const handleSingleProduct = (id: number) => {
@@ -25,13 +35,20 @@ const BookCard = ({ product }: IProps) => {
     <div className="group border-2 border-green-800 px-3 py-3 rounded-md">
       <div className="bg-gray-200 relative">
         <img
-          src={product.image}
+          src={product.image ? product.image : url + product.image}
           alt={product.title}
           className="h-[300px] w-full rounded-md group-hover:opacity-75"
         />
 
-        <button className="absolute top-0 z-30 right-0">
-          {clickedHeart ? <FaRegHeart size={30} /> : <FaHeart size={30} />}
+        <button
+          onClick={() => handleAddWishlist(product)}
+          className="absolute top-0 z-30 right-0"
+        >
+          {isProductInWishlist ? (
+            <FaHeart size={30} />
+          ) : (
+            <FaRegHeart size={30} />
+          )}
         </button>
       </div>
       <h3 className="mt-4 text-xl font-bold text-green-800">

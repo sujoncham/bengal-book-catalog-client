@@ -18,6 +18,7 @@ const Login = () => {
     event.preventDefault();
     console.log("clicked", email, password);
     dispatch(loginUser({ email: email, password: password }));
+    localStorage.setItem("email", user.email || "");
   };
 
   useEffect(() => {
@@ -54,7 +55,7 @@ const Login = () => {
                 autoComplete="email"
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+                className="block w-full rounded-md border-2 py-1.5 text-gray-900 shadow-sm px-3"
               />
             </div>
           </div>
@@ -82,7 +83,7 @@ const Login = () => {
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400"
+                className="block w-full rounded-md border-2 py-1.5 text-gray-900 shadow-sm px-3"
               />
             </div>
           </div>

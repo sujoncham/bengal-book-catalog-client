@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useSingleProductsQuery } from "../redux/api/apiSlice";
 import { addCart } from "../redux/features/cart/cartSlice";
+import { addWishlist } from "../redux/features/wishlist/wishSlice";
 import { useAppDispatch } from "../redux/hooks";
 import { IProduct } from "../types/globalTypes";
+import BookReview from "./BookReview";
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -51,43 +53,17 @@ const BookDetail = () => {
                 add to cart
               </button>
 
-              <button className="border-2 border-green-800 mr-2 px-2 py-1 rounded-md bg-green-800 text-white">
+              <button
+                onClick={() => dispatch(addWishlist(product))}
+                className="border-2 border-green-800 mr-2 px-2 py-1 rounded-md bg-green-800 text-white"
+              >
                 add to wishlist
               </button>
             </div>
           </div>
         </div>
         <div className="mt-10">
-          <div>
-            <p>Comment here</p>
-            <form>
-              <textarea
-                placeholder="write your comment"
-                className="border-2 border-green-800 mr-2 px-2 py-1 rounded-md w-full"
-              />
-              <button
-                onClick={() => handleAddProduct(product)}
-                className="border-2 border-purple-400 px-2 py-3 mt-5 rounded-md bg-blue-600"
-              >
-                add to cart
-              </button>
-            </form>
-          </div>
-          <div className="bg-gray-200 mt-10 px-1 py-1 rounded-md">
-            <div className="flex justify-start items-center">
-              <img
-                src=""
-                alt=""
-                className="w-12 h-12 rounded-full border-2 border-green-800 mr-2"
-              />
-              <p>Shakil Ahmed</p>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ex
-              eius vel, animi perspiciatis commodi harum officiis facere libero
-              voluptatum.
-            </p>
-          </div>
+          <BookReview id={id!} />
         </div>
       </div>
     </div>

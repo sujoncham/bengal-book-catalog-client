@@ -7,17 +7,22 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import auth from "../utils/firebase.init";
 const Header = () => {
   const { products } = useAppSelector((state) => state.cart);
+  const { books } = useAppSelector((state) => state.wishlist);
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const handleLogout = () => {
     console.log("logout");
-    signOut(auth).then(() => {
-      dispatch(setUser(null));
-    });
+    signOut(auth)
+      .then(() => {
+        dispatch(setUser(null));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   const [open, setOpen] = useState(true);
   return (
-    <div className="bg-green-800 py-3">
+    <div className="bg-green-800 py-3 sticky top-0 z-40">
       <div className="container mx-auto px-5 flex flex-col lg:flex-row md:flex-row sm:flex-col lg:justify-between md:justify-between sm:justify-center lg:items-center md:items-center sm:items-center items-center gap-3">
         <div>
           <Link to={"/"}>Bengal Book Catalog</Link>
@@ -39,21 +44,33 @@ const Header = () => {
             <li>
               <Link to={"/checkout"}>Checkout</Link>
             </li>
+            <li>
+              <Link to={"/addBook"}>Add Book</Link>
+            </li>
           </ul>
         </div>
         <div className="text-white">
           <ul className="flex justify-start items-center gap-3">
-            <li>
-              <Link to={"/login"}>
-                <FaHeart size={20} />
-              </Link>
-            </li>
-            <li>
-              <Link to={"/cart"} className="flex">
-                <FaShoppingCart size={20} />
-                <sup>{products.length > 0 ? products.length : 0}</sup>
-              </Link>
-            </li>
+            {user.email ? (
+              <>
+                <li>
+                  <Link to={"/wishlist"}>
+                    <FaHeart
+                      className={books.length > 0 ? "text-pink-500" : ""}
+                      size={20}
+                    />
+                  </Link>
+                </li>
+                <li>
+                  <Link to={"/cart"} className="flex">
+                    <FaShoppingCart size={20} />
+                    <sup>{products.length > 0 ? products.length : 0}</sup>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              ""
+            )}
             {!user.email ? (
               <li>
                 <Link to={"/login"}>Login</Link>
@@ -69,7 +86,7 @@ const Header = () => {
                     alt=""
                     className="w-10 h-10 rounded-full border-2 border-green-800 mr-2"
                   />
-                  <p>Shakil Ahmed</p>
+                  <p>{user.email.substring(0, 9)}</p>
                 </div>
                 {!open && (
                   <div className="flex flex-col h-auto absolute top-12 z-20 bg-gray-900 w-full py-2 rounded-md">

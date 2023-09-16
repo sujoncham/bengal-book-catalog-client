@@ -16,7 +16,7 @@ const Cart = () => {
     <div className="container mx-auto px-10 flex justify-center items-center py-16">
       <div className="w-[700px]">
         <div>
-          <h1>Cart</h1>
+          <h1 className="text-3xl font-bold py-5">My Cart</h1>
           Total: {total.toFixed(2)}
         </div>
         <div className="grid grid-cols-1 gap-5">

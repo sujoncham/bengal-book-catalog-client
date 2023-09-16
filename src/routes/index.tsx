@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
+import AddBook from "../components/AddBook";
 import BookDetail from "../components/BookDetail";
+import FullContent from "../components/FullContent";
 import About from "../pages/About";
 import Blog from "../pages/Blog";
 import Cart from "../pages/Cart";
@@ -10,6 +12,7 @@ import Login from "../pages/Login";
 import Page404 from "../pages/Page404";
 import Products from "../pages/Products";
 import Register from "../pages/Register";
+import WishList from "../pages/WishList";
 import PrivateRoute from "./PrivateRoute";
 const routes = createBrowserRouter([
   {
@@ -41,10 +44,26 @@ const routes = createBrowserRouter([
         element: <Cart />,
       },
       {
+        path: "/wishlist",
+        element: <WishList />,
+      },
+      {
+        path: "/fullContent",
+        element: <FullContent />,
+      },
+      {
         path: "/checkout",
         element: (
           <PrivateRoute>
             <Checkout />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/addBook",
+        element: (
+          <PrivateRoute>
+            <AddBook />
           </PrivateRoute>
         ),
       },

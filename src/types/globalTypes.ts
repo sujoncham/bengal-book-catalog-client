@@ -1,5 +1,6 @@
 export interface IProduct {
   _id: number;
+  userId: string;
   title: string;
   image: string;
   author: string;

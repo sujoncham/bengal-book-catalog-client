@@ -13,3 +13,8 @@ This template provides a minimal setup to get React working in Vite with HMR and
 - firease
 
 # bengal-book-catalog-client
+
+- login and regiter create with firebase. I will apply mongodb database for user login-register authentication later.
+- cart created and checkout form also.
+- without login user can not visit or add to cart or wishlist.
+- user can read full content of book by creating wishlist.

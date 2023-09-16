@@ -3,11 +3,13 @@ import { api } from "./api/apiSlice";
 import productSlice from "./features/book/productSlice";
 import cartSlice from "./features/cart/cartSlice";
 import userSlice from "./features/user/userSlice";
+import wishSlice from "./features/wishlist/wishSlice";
 
 const store = configureStore({
   reducer: {
     user: userSlice,
     product: productSlice,
+    wishlist: wishSlice,
     cart: cartSlice,
     [api.reducerPath]: api.reducer,
   },
