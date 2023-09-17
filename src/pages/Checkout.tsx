@@ -17,7 +17,7 @@ const Checkout = () => {
     cash: "Cash On Delivery",
     note: "",
     subtotal: total.toFixed(2),
-    DeliCharge: "4.50",
+    deliCharge: "4.50",
     total: (total + 4.5).toFixed(2),
     products: products.map((product) => ({
       _id: product._id,
@@ -85,8 +85,8 @@ const Checkout = () => {
                     <input
                       type="text"
                       name="email"
-                      onChange={handleInputChange}
-                      value={user.email || ""}
+                      readOnly
+                      defaultValue={user.email || ""}
                       className="mt-2 w-full border-2 border-purple-300 rounded-md px-3 py-1"
                     />
                   </div>
@@ -156,9 +156,9 @@ const Checkout = () => {
                 <label className="text-lg">Payment method</label>
                 <div className="flex gap-5 mt-5">
                   <input
-                    type="cash"
+                    type="text"
+                    name="cash"
                     className="mt-1 border-2 border-purple-300 rounded-md px-3 py-1"
-                    value={"Cash And Devliver"}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -178,12 +178,24 @@ const Checkout = () => {
                       <div>
                         <h1 className="text-lg mb-2">{product.title}</h1>
                         <p>Price: {product.price}</p>
-                        <input type="text" hidden value={product.price} />
+                        <input
+                          type="text"
+                          name="price"
+                          hidden
+                          readOnly
+                          defaultValue={product.price}
+                        />
                       </div>
                     </div>
                     <div>
                       <h1 className="text-4xl mr-5">{product.quantity}</h1>
-                      <input type="text" hidden value={product.quantity} />
+                      <input
+                        type="text"
+                        name="quantity"
+                        hidden
+                        readOnly
+                        defaultValue={product.quantity}
+                      />
                     </div>
                   </div>
                 ))}
@@ -192,16 +204,35 @@ const Checkout = () => {
                 <div className="flex justify-between text-lg">
                   <p>Subtotal</p>
                   <p>${formData.subtotal}</p>
-                  <input type="text" hidden value={formData.subtotal} />
+                  <input
+                    type="text"
+                    name="subtotal"
+                    hidden
+                    readOnly
+                    defaultValue={formData.subtotal}
+                  />
                 </div>
                 <div className="flex justify-between text-lg">
                   <p>Delivery</p>
-                  <p>${formData.DeliCharge}</p>
-                  <input type="text" hidden value={formData.DeliCharge} />
+                  <p>${formData.deliCharge}</p>
+                  <input
+                    type="text"
+                    name="deliCharge"
+                    hidden
+                    readOnly
+                    defaultValue={formData.deliCharge}
+                  />
                 </div>
                 <div className="flex justify-between text-xl font-bold">
                   <p>Total</p>
                   <p>${formData.total}</p>
+                  <input
+                    type="text"
+                    name="total"
+                    hidden
+                    readOnly
+                    defaultValue={formData.total}
+                  />
                 </div>
                 <button
                   type="submit"
