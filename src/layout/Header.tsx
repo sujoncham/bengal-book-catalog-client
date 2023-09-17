@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import { useState } from "react";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setUser } from "../redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import auth from "../utils/firebase.init";
@@ -10,11 +10,13 @@ const Header = () => {
   const { books } = useAppSelector((state) => state.wishlist);
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const handleLogout = () => {
     console.log("logout");
     signOut(auth)
       .then(() => {
         dispatch(setUser(null));
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -44,9 +46,11 @@ const Header = () => {
             <li>
               <Link to={"/checkout"}>Checkout</Link>
             </li>
-            <li>
-              <Link to={"/addBook"}>Add Book</Link>
-            </li>
+            {user.email && (
+              <li>
+                <Link to={"/addBook"}>Add Book</Link>
+              </li>
+            )}
           </ul>
         </div>
         <div className="text-white">
@@ -72,7 +76,7 @@ const Header = () => {
               ""
             )}
             {!user.email ? (
-              <li>
+              <li className="px-2 py-1 hover:bg-green-500 rounded-md cursor-pointer">
                 <Link to={"/login"}>Login</Link>
               </li>
             ) : (

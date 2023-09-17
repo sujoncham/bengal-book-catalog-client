@@ -1,4 +1,5 @@
 export interface IProduct {
+  isAddedToCart: boolean;
   _id: number;
   userId: string;
   title: string;

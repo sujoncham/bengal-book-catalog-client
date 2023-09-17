@@ -10,7 +10,9 @@ This template provides a minimal setup to get React working in Vite with HMR and
 - react-router-dom
 - react-redux & react/toolkit
 - react-icons
-- firease
+- firebase
+- react-firebase-hooks
+-
 
 # bengal-book-catalog-client
 
@@ -18,3 +20,4 @@ This template provides a minimal setup to get React working in Vite with HMR and
 - cart created and checkout form also.
 - without login user can not visit or add to cart or wishlist.
 - user can read full content of book by creating wishlist.
+- checkout done

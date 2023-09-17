@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import { loginUser } from "../redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -14,6 +15,16 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const from = location.state?.from?.pathname || "/";
 
+  useEffect(() => {
+    if (user.email) {
+      navigate(from, { replace: true });
+    }
+  }, [user.email, navigate, from]);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("clicked", email, password);
@@ -21,11 +32,6 @@ const Login = () => {
     localStorage.setItem("email", user.email || "");
   };
 
-  useEffect(() => {
-    if (user.email && !isLoading) {
-      navigate(from, { replace: true });
-    }
-  }, [user.email, isLoading, navigate, from]);
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">

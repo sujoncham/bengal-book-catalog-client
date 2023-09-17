@@ -37,7 +37,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/bookDetail/:id",
-        element: <BookDetail />,
+        element: (
+          <PrivateRoute>
+            <BookDetail />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/cart",
