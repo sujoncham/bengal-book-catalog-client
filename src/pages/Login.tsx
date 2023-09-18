@@ -1,9 +1,10 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import LoadingSpinner from "../Shared/LoadingSpinner";
+import logo from "../assets/2bc.png";
 import { loginUser } from "../redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -35,11 +36,7 @@ const Login = () => {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
-          className="mx-auto h-10 w-auto"
-          src="https://i.ibb.co/n0N6PVN/bbc.png"
-          alt="book catalog"
-        />
+        <img className="mx-auto h-20 w-auto" src={logo} alt="book catalog" />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign in to your account
         </h2>

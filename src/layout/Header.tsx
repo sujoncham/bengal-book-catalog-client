@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import { useState } from "react";
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import img from "../assets/2bc.png";
 import { setUser } from "../redux/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import auth from "../utils/firebase.init";
@@ -27,7 +28,9 @@ const Header = () => {
     <div className="bg-green-800 py-3 sticky top-0 z-40">
       <div className="container mx-auto px-5 flex flex-col lg:flex-row md:flex-row sm:flex-col lg:justify-between md:justify-between sm:justify-center lg:items-center md:items-center sm:items-center items-center gap-3">
         <div>
-          <Link to={"/"}>Bengal Book Catalog</Link>
+          <Link to={"/"}>
+            <img src={img} alt="logo" className="w-16" />{" "}
+          </Link>
         </div>
         <div className="text-white">
           <ul className="flex justify-start items-center flex-wrap gap-3">

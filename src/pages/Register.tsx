@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../assets/2bc.png";
 import { createUser } from "../redux/features/user/userSlice";
 import { useAppDispatch } from "../redux/hooks";
 
@@ -18,11 +19,7 @@ const Register = () => {
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
-          className="mx-auto h-10 w-auto"
-          src="https://i.ibb.co/n0N6PVN/bbc.png"
-          alt="book catalog"
-        />
+        <img className="mx-auto h-20 w-auto" src={logo} alt="book catalog" />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign up to create account
         </h2>
