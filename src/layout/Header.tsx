@@ -49,13 +49,16 @@ const Header = () => {
             <li>
               <Link to={"/checkout"}>Checkout</Link>
             </li>
-            <li>
-              <Link to={"/dashboard"}>Dashboard</Link>
-            </li>
             {user.email && (
-              <li>
-                <Link to={"/addBook"}>Add Book</Link>
-              </li>
+              <>
+                <li>
+                  <Link to={"/dashboard"}>Dashboard</Link>
+                </li>
+
+                <li>
+                  <Link to={"/addBook"}>Add Book</Link>
+                </li>
+              </>
             )}
           </ul>
         </div>
