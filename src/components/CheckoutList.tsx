@@ -10,7 +10,7 @@ const CheckoutList = () => {
     const getData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/checkout/checkout"
+          "https://bengal-book-catalog-server.onrender.com/api/v1/checkout/checkout"
         );
         console.log("inserted", response.data);
         setCheckoutList(response.data);

@@ -38,7 +38,11 @@ const AddBook = () => {
       },
     };
     await axios
-      .post("http://localhost:5000/api/v1/books/addNewBook", formData, options)
+      .post(
+        "https://bengal-book-catalog-server.onrender.com/api/v1/books/addNewBook",
+        formData,
+        options
+      )
       .then((data) => {
         console.log("inserted", data);
       })

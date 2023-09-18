@@ -13,7 +13,7 @@ interface IProps {
 const BookCard = ({ product }: IProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const url = `http://localhost:5000/`;
+  const url = `https://bengal-book-catalog-server.onrender.com/`;
   const { user } = useAppSelector((state) => state.user);
 
   const [isAddedToCart, setIsAddedToCart] = useState(false);

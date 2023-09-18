@@ -30,7 +30,7 @@ const Header = () => {
           <Link to={"/"}>Bengal Book Catalog</Link>
         </div>
         <div className="text-white">
-          <ul className="flex justify-start items-center gap-3">
+          <ul className="flex justify-start items-center flex-wrap gap-3">
             <li>
               <Link to={"/"}>Home</Link>
             </li>

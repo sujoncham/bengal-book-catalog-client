@@ -39,11 +39,15 @@ const Checkout = () => {
 
     try {
       await axios
-        .post("http://localhost:5000/api/v1/checkout/addCheckout", formData, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+        .post(
+          "https://bengal-book-catalog-server.onrender.com/api/v1/checkout/addCheckout",
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
         .then((data) => {
           console.log("inserted", data);
         })
